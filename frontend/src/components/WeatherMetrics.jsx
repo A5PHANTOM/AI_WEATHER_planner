@@ -35,11 +35,11 @@ function CountUp({ value, suffix = '' }) {
 }
 
 const METRICS_CONFIG = [
-  { key: 'temperature', label: 'Temperature', icon: Thermometer, suffix: '°C', color: 'from-orange-400 to-red-500' },
-  { key: 'humidity', label: 'Humidity', icon: Droplets, suffix: '%', color: 'from-blue-400 to-cyan-500' },
-  { key: 'wind_speed', label: 'Wind Speed', icon: Wind, suffix: ' m/s', color: 'from-teal-400 to-emerald-500' },
-  { key: 'rain_probability', label: 'Rain Probability', icon: Umbrella, suffix: '%', color: 'from-sky-400 to-indigo-500' },
-  { key: 'uv_index', label: 'UV Index', icon: SunDim, suffix: '', color: 'from-yellow-400 to-orange-500' },
+  { key: 'temperature', label: 'Temperature', icon: Thermometer, suffix: '°C', color: 'text-amber-200', bg: 'bg-amber-300/10' },
+  { key: 'humidity', label: 'Humidity', icon: Droplets, suffix: '%', color: 'text-sky-200', bg: 'bg-sky-300/10' },
+  { key: 'wind_speed', label: 'Wind Speed', icon: Wind, suffix: ' m/s', color: 'text-teal-200', bg: 'bg-teal-300/10' },
+  { key: 'rain_probability', label: 'Rain Chance', icon: Umbrella, suffix: '%', color: 'text-indigo-200', bg: 'bg-indigo-300/10' },
+  { key: 'uv_index', label: 'UV Index', icon: SunDim, suffix: '', color: 'text-orange-200', bg: 'bg-orange-300/10' },
 ]
 
 export default function WeatherMetrics({ weather }) {
@@ -63,9 +63,9 @@ export default function WeatherMetrics({ weather }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 max-w-5xl mx-auto px-4 mt-6"
+      className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-3 px-4 sm:grid-cols-3 lg:grid-cols-5"
     >
-      {METRICS_CONFIG.map(({ key, label, icon: Icon, suffix, color }) => {
+      {METRICS_CONFIG.map(({ key, label, icon: Icon, suffix, color, bg }) => {
         let val = weather[key]
         if (val === undefined || val === null) return null
         val = Math.round(val)
@@ -74,15 +74,18 @@ export default function WeatherMetrics({ weather }) {
             key={key}
             variants={item}
             whileHover={{ scale: 1.04, y: -4 }}
-            className="glass rounded-2xl p-4 text-center glass-hover"
+            className="glass glass-hover rounded-lg p-4"
           >
-            <div className={`inline-flex p-2.5 rounded-xl bg-gradient-to-br ${color} mb-2`}>
-              <Icon size={18} className="text-white" />
+            <div className="mb-5 flex items-center justify-between">
+              <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${bg}`}>
+                <Icon size={18} className={color} />
+              </div>
+              <div className="h-1.5 w-1.5 rounded-full bg-white/25" />
             </div>
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-semibold text-white">
               <CountUp value={val} suffix={suffix} />
             </div>
-            <div className="text-xs text-muted mt-0.5 uppercase tracking-wider">
+            <div className="mt-1 text-xs text-muted">
               {label}
             </div>
           </motion.div>

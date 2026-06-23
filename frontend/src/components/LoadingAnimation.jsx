@@ -22,9 +22,9 @@ export default function LoadingAnimation() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="max-w-md mx-auto mt-10 px-4"
+      className="mx-auto mt-10 max-w-md px-4"
     >
-      <div className="glass rounded-3xl p-8 space-y-6 text-center">
+      <div className="glass rounded-lg p-8 text-center">
         <AnimatePresence mode="wait">
           {step < STEPS.length && (
             <motion.div
