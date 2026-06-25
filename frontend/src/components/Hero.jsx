@@ -65,9 +65,9 @@ export default function Hero() {
 
         <motion.div variants={item} className="grid grid-cols-3 gap-2 sm:gap-3">
           {[
-            { icon: MapPinned, label: 'Location', value: 'Global' },
+            { icon: MapPinned, label: 'Coverage', value: 'Global' },
             { icon: Gauge, label: 'Risk', value: '0-100' },
-            { icon: ShieldCheck, label: 'Decision', value: 'Instant' },
+            { icon: ShieldCheck, label: 'Forecast', value: '7 Days' },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="glass rounded-lg p-4">
               <Icon size={18} className="mb-3 text-sky-200" />
